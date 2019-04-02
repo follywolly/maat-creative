@@ -1,13 +1,44 @@
 <template>
   <div>
     <nuxt />
+    <loader />
   </div>
 </template>
 
-<style>
+<script>
+import loader from '~/components/loader.vue'
+import data from '~/components/helpers/data.js'
+
+export default {
+  components: {
+    loader
+  },
+  async mounted() {
+    const pages = await data.getPages()
+    this.$store.commit('setPages', pages)
+
+    this.$store.commit('setLoading', false)
+
+    const posts = await data.getPosts()
+    this.$store.commit('setPosts', posts)
+    console.log('called')
+  }
+}
+</script>
+
+<style lang="scss">
+/*
+light gray: #F2F2F3;
+med gray: #C8CDD0;
+dark gray: #415058;
+black: #292929;
+accent: #ce0472;
+*/
+
+@import url("https://use.typekit.net/eaz8enf.css");
+
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Fieldwork', Helvetica, Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -16,40 +47,130 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
-
+body {
+  color: #292929;
+}
+section {
+  background-color: white;
+}
 *,
 *:before,
 *:after {
   box-sizing: border-box;
   margin: 0;
 }
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
+figure {
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #C8CDD0;
+}
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.container {
+  padding: 6rem 3rem;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.title, .text {
+  max-width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.4;
+}
+.title {
+  &--light {
+    color: #fff;
+  }
+  &--center {
+    text-align: center;
+  }
+}
+.subtitle {
+  font-weight: lighter;
+  font-size: 1rem;
+  margin: .75rem 0;
+  &--light {
+    color: #fff;
+  }
+  &--center {
+    text-align: center;
+  }
+}
+.text {
+  &--small {
+    font-weight: lighter;
+    font-size: 0.875rem;
+  }
+  &--grey {
+    color: #415058;
+  }
+  &--center {
+    text-align: center;
+  }
+}
+.full {
+  overflow-x: hidden;
+  background-color: white;
+  transition: all 0.3s;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  &--vertical {
+    align-items: center;
+    flex-direction: column;
+  }
+}
+.btn {
+  font-family: inherit;
+  appearance: none;
+  border: 0;
+  background: 0;
+  padding: 0.75rem 2rem;
+  background: linear-gradient(to right, #ff9966, #ff5e62);
+  // background: linear-gradient(to right, #fc4cac, #ce0472);
+  // background: #ce0472;
+  border-radius: 2rem;
   text-decoration: none;
-  padding: 10px 30px;
+  color: white;
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: table;
+  text-transform: lowercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  &--center {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
+.title {
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+  font-size: 1.5rem;
+  &--pre {
+    font-size: .875rem;
+  }
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
 }
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+input {
+  font-family: inherit;
+  font-size: 1rem;
+  appearance: none;
+  border: 0;
+  background: 0;
+  padding: 0.75rem 1.25rem;
+  background-color: white;
 }
 </style>
