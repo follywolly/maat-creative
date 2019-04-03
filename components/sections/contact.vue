@@ -10,14 +10,26 @@
 <script>
 export default {
   props: ['page'],
-  computed: {
-    email() {
-      if (process.browser) {
-        return this.page.contact_button.email
-      }
-      return ''
+  data() {
+    return {
+      email: ''
+    }
+  },
+  mounted(){
+    if (process.browser) {
+      this.$watch('page', page => {
+        this.email = page.contact_button.email
+      }, {immediate:true})
     }
   }
+  // computed: {
+  //   email() {
+  //     if (process.browser) {
+  //       return this.page.contact_button.email
+  //     }
+  //     return ''
+  //   }
+  // }
 }
 </script>
 <style lang="scss" scoped>
