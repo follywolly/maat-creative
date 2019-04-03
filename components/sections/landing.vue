@@ -5,7 +5,7 @@
       <div class="container">
         <h2 class="title title--light title--center">{{page.title}}</h2>
         <h3 class="subtitle subtitle--light subtitle--center">{{page.subtitle}}</h3>
-        <a class="btn scroll-link" href="#about">learn more</a>
+        <a class="btn scroll-link" href="#about" aria-label="learn more about our tool!">learn more</a>
       </div>
     </div>
     <a class="scroll-link scroll-button" href="#about" aria-hidden="true">

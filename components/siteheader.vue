@@ -62,6 +62,10 @@ export default {
     nav {
       margin-left: 2rem;
       overflow-x: scroll;
+      @media screen and (min-width: 50rem) {
+        margin: 0;
+        overflow-x: auto;
+      }
       ul {
         display: flex;
         list-style: none;

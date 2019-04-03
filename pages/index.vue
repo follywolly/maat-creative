@@ -59,6 +59,7 @@ export default {
 .parallax {
   perspective: 1px;
   height: 100vh;
+  max-width: 100vw;
   overflow-x: hidden;
   overflow-y: auto;
 }

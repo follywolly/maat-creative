@@ -35,9 +35,8 @@ black: #292929;
 accent: #ce0472;
 */
 
-@import url("https://use.typekit.net/eaz8enf.css");
-
 html {
+  font-family: sans-serif;
   font-family: 'Fieldwork', Helvetica, Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
@@ -49,6 +48,7 @@ html {
 }
 body {
   color: #292929;
+  overflow-x: hidden;
 }
 section {
   background-color: white;
@@ -87,6 +87,9 @@ img {
   line-height: 1.4;
 }
 .title {
+  &:focus {
+    color: red;
+  }
   &--light {
     color: #fff;
   }

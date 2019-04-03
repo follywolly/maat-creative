@@ -1,7 +1,7 @@
 {
-  "name": "maat-landing",
+  "name": "MAATcreative",
   "version": "1.0.0",
-  "description": "Landing page for MAAT Creative",
+  "description": "A tool for turning decision making into experiences",
   "author": "FollyWolly",
   "private": true,
   "scripts": {

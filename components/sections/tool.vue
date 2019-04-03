@@ -5,7 +5,7 @@
       <p class="text text--center text--small text--grey">{{page.tool_description}}</p>
       <div class="video-holder" v-if="page.tool_preview.length > 0">
         <choicevideo v-for="(preview, key) in page.tool_preview" :key="key" :data-choiceholder="key" :class="key === 0 ? 'active' : ''" :preview="page.tool_preview[key]" />
-        <button @click="switchChoices" class="btn">switch!</button>
+        <button @click="switchChoices" class="btn" aria-hidden="true">switch!</button>
       </div>
     </div>
   </section>
