@@ -63,6 +63,7 @@ export default {
     height: 20rem;
     overflow: hidden;
     .btn {
+      margin: 0;
       position: absolute;
       top: 50%;
       left: 50%;

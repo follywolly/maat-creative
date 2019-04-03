@@ -54,43 +54,49 @@ export default {
       z-index: 1;
       .choice_one {
         // opacity: 1;
-        transform: translateY(20rem);
+        transform: translateX(100vw);
       }
       .choice_two {
         // opacity: 1;
-        transform: translateY(-20rem);
+        transform: translateX(-100vw);
       }
     }
     &.out {
       z-index: 0;
       .choice_one {
-        transform: translateY(40rem);
+        transform: translateX(200vw);
         // opacity: 1;
       }
       .choice_two {
-        transform: translateY(-40rem);
+        transform: translateX(-200vw);
         // opacity: 1;
       }
     }
     .choice_one, .choice_two {
+      height: 10rem;
+      min-width: 100vw;
+      width: 100vw;
       position: absolute;
-      top: -20rem;
-      left: 0;
+      top: 0;
+      left: -100vw;
       // opacity: 0;
       transition: all 1s;
     }
     .choice_two {
-      bottom: -20rem;
-      right: 0;
       left: auto;
-      top: auto;
+      right: -100vw;
+      top: 10rem;
+      .choice__text-holder {
+        left: auto;
+        right: 0;
+      }
     }
     .choice__text-holder {
       pointer-events: none;
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
+      width: 50%;
       bottom: 0;
       padding: 2rem;
       background-color: transparent;
@@ -133,6 +139,49 @@ export default {
   @media screen and (min-width: 40rem) {
     .choice {
       display: flex;
+      &.active {
+        .choice_one {
+          // opacity: 1;
+          transform: translateY(20rem);
+        }
+        .choice_two {
+          // opacity: 1;
+          transform: translateY(-20rem);
+        }
+      }
+      &.out {
+        .choice_one {
+          transform: translateY(40rem);
+          // opacity: 1;
+        }
+        .choice_two {
+          transform: translateY(-40rem);
+          // opacity: 1;
+        }
+      }
+      .choice_one, .choice_two {
+        min-width: auto;
+        height: 20rem;
+        width: 50%;
+        position: absolute;
+        top: -20rem;
+        left: 0;
+        // opacity: 0;
+        transition: all 1s;
+      }
+      .choice_two {
+        bottom: -20rem;
+        right: 0;
+        left: auto;
+        top: auto;
+        .choice__text-holder {
+          right: auto;
+          left: 0;
+        }
+      }
+      .choice__text-holder {
+        width: 100%;
+      }
     }
     .embed-container {
       width: 50%;

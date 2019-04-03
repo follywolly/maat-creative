@@ -60,9 +60,12 @@ export default {
       }
     }
     nav {
+      margin-left: 2rem;
+      overflow-x: scroll;
       ul {
         display: flex;
         list-style: none;
+        padding: 0;
         li {
           margin: 0 0.5rem;
           a {
