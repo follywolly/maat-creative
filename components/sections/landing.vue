@@ -5,7 +5,7 @@
       <div class="container">
         <h2 class="title title--light title--center">{{page.title}}</h2>
         <h3 class="subtitle subtitle--light subtitle--center">{{page.subtitle}}</h3>
-        <a class="btn scroll-link" href="#about" aria-label="learn more about our tool!">learn more</a>
+        <a class="btn scroll-link" href="#about" :aria-label="page.landing_button.aria">{{page.landing_button.text}}</a>
       </div>
     </div>
     <a class="scroll-link scroll-button" href="#about" aria-hidden="true">
@@ -23,18 +23,20 @@ export default {
 <style lang="scss" scoped>
 .scroll-button {
   position: absolute;
-  bottom: 1rem;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  height: 1.5rem;
-  width: 6px;
+  height: 2rem;
+  padding: 0.45rem;
   overflow: hidden;
+  border: 1px solid white;
+  border-radius: 25px;
   .scroller {
     content: "";
     display: block;
     background-color: white;
-    width: 6px;
-    height: 6px;
+    width: 3px;
+    height: 3px;
     border-radius: 50%;
     animation: scroll 1.5s linear infinite;
     // position: absolute;
@@ -60,10 +62,25 @@ export default {
   position: relative;
 }
 .landing-holder {
+  .title {
+    font-size: 1.5rem;
+    @media screen and (min-width: 40rem) {
+      white-space: nowrap;
+      font-size: 2rem;
+    }
+
+    max-width: 100%;
+  }
+  .subtitle {
+    max-width: 30rem;
+    display: block;
+    margin: 1rem auto;
+    line-height: 1.6;
+  }
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 80vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

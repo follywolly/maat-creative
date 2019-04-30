@@ -3,13 +3,15 @@
     <siteheader />
     <div class="parallax">
       <div class="parallax__layer parallax__layer--back">
-        <img :src="data.acf.background_image" alt="">
+        <div class="video-holder" v-if="data.acf.tool_preview.length > 0">
+          <choicevideo :data-choiceholder="0" class="active" :preview="data.acf.tool_preview[0]" />
+        </div>
       </div>
       <main class="parallax__layer parallax__layer--base" id="root">
         <landing :page="data.acf" />
         <about :page="data.acf" />
-        <tool :page="data.acf" />
         <advantages :page="data.acf" />
+        <tool :page="data.acf" />
         <contact :page="data.acf" />
         <sitefooter />
       </main>
@@ -27,6 +29,7 @@ import tool from '~/components/sections/tool.vue'
 import advantages from '~/components/sections/advantages.vue'
 import contact from '~/components/sections/contact.vue'
 import sitefooter from '~/components/sitefooter.vue'
+import choicevideo from '~/components/choice-video.vue'
 
 
 export default {
@@ -37,7 +40,8 @@ export default {
     tool,
     advantages,
     contact,
-    sitefooter
+    sitefooter,
+    choicevideo
   },
   computed: {
     data() {
@@ -71,10 +75,34 @@ export default {
   left: 0;
 }
 .parallax__layer--base {
-  padding-top: 2.5rem;
+  // padding-top: 2.5rem;
   transform: translateZ(0);
 }
 .parallax__layer--back {
-  transform: translateZ(-2px) scale(3.1);
+  transform: translateZ(-1px) scale(2.1);
+  .choice.active {
+    .embed-container {
+      transition: none;
+      height: 50vh;
+      &:nth-of-type(2) {
+        top: 50vh;
+      }
+    }
+    @media screen and (min-width: 40rem) {
+      .embed-container {
+        height: 100%;
+        transform: translate(0,0);
+        top: 0;
+        &:nth-of-type(2) {
+          top: 0;
+        }
+
+      }
+    }
+  }
+  .choice__text-holder {
+    display: none;
+  }
+
 }
 </style>

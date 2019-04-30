@@ -1,13 +1,14 @@
 export const state = () => ({
-  loading: true,
+  loading: false,
   pages: [],
-  posts: []
+  posts: [],
+  choices: [],
+  dashboard: []
 })
 
 export const mutations = {
   setPages(state, payload) {
     state.pages = payload
-    console.log(state.pages);
   },
   setPosts(state, payload) {
     state.posts = payload
@@ -17,17 +18,28 @@ export const mutations = {
   },
   setLoading(state, payload) {
     state.loading = payload
+    console.log('setting loading', payload);
+  },
+  setDashboard(state, payload) {
+    state.dashboard = payload
   }
+
 }
 
 export const getters = {
   getPage(state) {
     return (name) => state.pages.find(page => page.title.rendered.toLowerCase() === name.toLowerCase())
   },
+  getPages(state) {
+    return state.pages
+  },
   getPosts(state) {
     return state.posts
   },
   isLoading(state) {
     return state.loading
+  },
+  getDashboard(state) {
+    return state.dashboard
   }
 }

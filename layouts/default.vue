@@ -10,18 +10,37 @@ import loader from '~/components/loader.vue'
 import data from '~/components/helpers/data.js'
 
 export default {
+  head() {
+    return {
+      script: [
+        {src: 'https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js'}
+      ]
+    }
+
+  },
   components: {
     loader
   },
   async mounted() {
-    const pages = await data.getPages()
-    this.$store.commit('setPages', pages)
+    if (process.browser) {
+      const lazyLoadInstance = new LazyLoad({
+        elements_selector: ".lazy"
+      })
+    }
+    let check = this.$store.state.pages
+    if (check.length === 0) {
+      const pages = await data.getPages()
+      this.$store.commit('setPages', pages)
 
-    this.$store.commit('setLoading', false)
-
-    const posts = await data.getPosts()
-    this.$store.commit('setPosts', posts)
-    console.log('called')
+      // this.$store.commit('setLoading', false)
+    }
+    check = this.$store.state.posts
+    if (check.length === 0) {
+      // this.$store.commit('setLoading', true)
+      const posts = await data.getPosts()
+      this.$store.commit('setPosts', posts)
+      // this.$store.commit('setLoading', false)
+    }
   }
 }
 </script>
@@ -37,7 +56,7 @@ accent: #ce0472;
 
 html {
   font-family: sans-serif;
-  font-family: 'Fieldwork', Helvetica, Arial, sans-serif;
+  font-family: 'Nunito', Helvetica, Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -87,6 +106,10 @@ img {
   line-height: 1.4;
 }
 .title {
+  font-size: 1.5rem;
+  @media screen and (min-width: 40rem){
+    font-size: 2rem;
+  }
   &:focus {
     color: red;
   }
@@ -100,6 +123,9 @@ img {
 .subtitle {
   font-weight: lighter;
   font-size: 1rem;
+  @media screen and (min-width: 40rem){
+    font-size: 1.125rem;
+  }
   margin: .75rem 0;
   &--light {
     color: #fff;
@@ -109,9 +135,16 @@ img {
   }
 }
 .text {
+  font-size: 1rem;
+  @media screen and (min-width: 40rem){
+    font-size: 1.125rem;
+  }
   &--small {
     font-weight: lighter;
-    font-size: 0.875rem;
+    font-size: .875rem;
+    @media screen and (min-width: 40rem){
+      font-size: 1rem;
+    }
   }
   &--grey {
     color: #415058;
@@ -146,22 +179,42 @@ img {
   text-decoration: none;
   color: white;
   font-size: 1rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   display: table;
   text-transform: lowercase;
   cursor: pointer;
   transition: all 0.3s;
+  @media screen and (min-width: 40rem) {
+    font-size: 1.125rem;
+  }
   &--center {
     margin-left: auto;
     margin-right: auto;
   }
+  &--secondary {
+    background: transparent;
+    color: #415058;
+    border-bottom: 1px solid #415058;
+    border-radius: 0;
+    transition: all 0.3s;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    &:hover {
+      background-color: #415058;
+      color: #fff;
+      padding-left: 1.75rem;
+      padding-right: 1.75rem;
+      // border-radius: 25px;
+    }
+  }
 }
 .title {
   line-height: 1.4;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
   margin-top: 0;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-weight: bold;
   &--pre {
     font-size: .875rem;
   }

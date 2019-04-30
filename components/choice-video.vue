@@ -5,7 +5,7 @@
         <h2 class="choice__category">{{preview.choice_one.category}}</h2>
         <h3 class="choice__description">{{preview.choice_one.description}}</h3>
       </div>
-      <video :src="format(preview.choice_one.video)" autoplay preload playsinline muted loop width="100%" height="auto"></video>
+      <video class="lazy" :data-src="format(preview.choice_one.video)" autoplay preload playsinline muted loop width="100%" height="auto"></video>
       <!-- <iframe :src="format(post.acf.video_1)" width="100%" height="auto" frameborder="0" allowfullscreen></iframe> -->
     </div>
     <div class="embed-container choice_two">
@@ -14,7 +14,7 @@
         <h3 class="choice__description">{{preview.choice_two.description}}</h3>
       </div>
 
-      <video :src="format(preview.choice_two.video)" autoplay preload playsinline muted loop width="100%" height="auto"></video>
+      <video class="lazy" :data-src="format(preview.choice_two.video)" autoplay preload playsinline muted loop width="100%" height="auto"></video>
       <!-- <iframe :src="format(post.acf.video_2)" width="100%" height="auto" frameborder="0" allowfullscreen></iframe> -->
     </div>
   </div>
@@ -51,7 +51,7 @@ export default {
     }
     &.active {
       pointer-events: all;
-      z-index: 1;
+      z-index: 2;
       .choice_one {
         // opacity: 1;
         transform: translateX(100vw);
